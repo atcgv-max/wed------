@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- 定义渐变颜色 -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6c5ce7"/>
+      <stop offset="100%" stop-color="#a29bfe"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景：柔和的渐变圆底 -->
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+
+  <!-- 人物头部：白色圆形 -->
+  <circle cx="100" cy="76" r="34" fill="#ffffff"/>
+
+  <!-- 人物肩部 / 身体：白色贝塞尔曲线剪影 -->
+  <path d="M52 180 C54 136 74 118 100 118 C126 118 146 136 148 180 Z" fill="#ffffff"/>
+</svg>

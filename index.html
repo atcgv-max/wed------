@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- 字符编码：UTF-8，保证中文正常显示 -->
+  <meta charset="UTF-8">
+  <!-- 移动端适配：视口宽度＝设备宽度，初始缩放比例为 1 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 页面描述：便于搜索引擎收录 -->
+  <meta name="description" content="李明 · 前端开发工程师 · 个人名片">
+  <!-- 页面标题 -->
+  <title>李明 · 个人名片</title>
+  <!-- 引入外部 CSS 样式（结构层与样式层分离书写） -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== 主卡片容器 ==================== -->
+  <!-- 居中的个人名片卡片，花色样式全部由 style.css 控制 -->
+  <main class="card">
+
+    <!-- 头像区：圆形头像（图片裁切成正圆由 CSS 实现） -->
+    <figure class="avatar">
+      <img src="assets/avatar.svg" alt="李明的头像">
+    </figure>
+
+    <!-- 身份信息区：姓名 + 职位 + 个人简介 -->
+    <header class="profile">
+      <h1 class="name">李明</h1>
+      <!-- 职位以渐变胶囊徽章的形式呈现 -->
+      <p class="title">前端开发工程师</p>
+      <p class="bio">热爱开源与技术分享，专注打造流畅、优雅的 Web 体验。</p>
+    </header>
+
+    <!-- 分隔线：区分身份区与联系方式区 -->
+    <div class="divider"></div>
+
+    <!-- 联系方式列表 -->
+    <ul class="contact">
+      <!-- 电话：点击可唤起拨号 -->
+      <li class="contact-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07
+                   19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2
+                   0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16
+                   16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2
+                   0 0 1 22 16.92z"/>
+        </svg>
+        <a href="tel:13800138000">138 0008 8000</a>
+      </li>
+      <!-- 邮箱：点击可唤起邮件客户端 -->
+      <li class="contact-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+          <path d="M22 6l-10 7L2 6"/>
+        </svg>
+        <a href="mailto:zhangming@example.com">zhangming@example.com</a>
+      </li>
+      <!-- 所在地：无跳转，仅作展示 -->
+      <li class="contact-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>中国 · 北京</span>
+      </li>
+    </ul>
+
+  </main>
+
+  <!-- 页面底部版权信息 -->
+  <footer class="footer">© 2026 李明 · 个人名片</footer>
+
+</body>
+</html>

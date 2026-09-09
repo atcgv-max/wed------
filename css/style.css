@@ -1,0 +1,209 @@
+/* =====================================================================
+   个人名片样式表  style.css
+   项目：简约个人名片（居中卡片式）
+   说明：本文件仅负责“样式层”，与 index.html 的“结构层”分离书写；
+         页面所有外观（颜色、尺寸、动画）均由本表统一控制。
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   一、全局基础设置
+   --------------------------------------------------------------------- */
+
+/* 1. 通配重置：清除浏览器默认内外边距，并统一盒模型（border-box） */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. 主题色变量：集中于 :root 统一管理，一处修改、全局生效 */
+:root {
+  --bg-start:       #eef1f6;   /* 页面背景渐变（起点）：浅灰蓝 */
+  --bg-end:         #e3e9f2;   /* 页面背景渐变（终点） */
+  --card-bg:        #ffffff;   /* 名片卡片背景色：纯白 */
+  --text-primary:   #2c3e50;   /* 主文字色（姓名） */
+  --text-secondary: #7f8c8d;   /* 次级文字色（简介 / 联系方式） */
+  --accent:         #6c5ce7;   /* 品牌强调色（与头像紫色渐变呼应） */
+  --radius-card:    12px;      /* 卡片圆角（需求：12px） */
+  --shadow-soft:    0 8px 24px rgba(44, 62, 80, 0.10);   /* 柔和阴影（需求） */
+  --shadow-hover:   0 18px 40px rgba(44, 62, 80, 0.18);  /* 悬停加深阴影 */
+}
+
+/* 3. 页面主体：浅色渐变背景 + 弹性盒（Flex）实现卡片水平 / 垂直双居中 */
+body {
+  display: flex;              /* 启用弹性盒布局 */
+  flex-direction: column;     /* 主轴方向：纵向，卡片在上、版权在下 */
+  align-items: center;        /* 交叉轴：水平居中 */
+  justify-content: center;    /* 主轴：垂直居中（配合 min-height 占满一屏） */
+  min-height: 100vh;          /* 高度至少占满视口，保证卡片始终居中 */
+  gap: 1.5rem;                /* 卡片与页脚之间的间距 */
+  padding: 2rem 1rem;         /* 上下留白，避免内容贴到屏幕边缘 */
+  background: linear-gradient(160deg, var(--bg-start), var(--bg-end));
+
+  /* 中文字体栈：优先微软雅黑，其次苹方与系统字体 */
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI",
+               system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
+}
+
+/* ---------------------------------------------------------------------
+   二、名片卡片主体
+   --------------------------------------------------------------------- */
+
+/* 卡片：固定上限宽度、12px 圆角、柔和阴影，并预留悬停上浮的过渡动画 */
+.card {
+  width: 100%;
+  max-width: 360px;               /* 卡片宽度上限，保持窄列简洁感 */
+  padding: 2rem 1.75rem 2.25rem;  /* 内边距：让内容与卡片边缘留出呼吸空间 */
+  background: var(--card-bg);
+  border-radius: var(--radius-card);  /* 12px 圆角（需求） */
+  box-shadow: var(--shadow-soft);     /* 柔和阴影（需求） */
+  text-align: center;                 /* 卡片内文字水平居中：简约卡片常用 */
+  overflow: hidden;                   /* 在圆角内裁掉溢出内容，保证圆角干净 */
+
+  /* 过渡动画：transform（位移）与 box-shadow（阴影）变化时 0.3s 平滑过渡 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 悬停交互：卡片轻微上浮 + 阴影加深（需求：上浮过渡动画） */
+.card:hover {
+  transform: translateY(-6px);   /* 沿 Y 轴向上移动 6px，产生“轻微抬起”的浮起感 */
+  box-shadow: var(--shadow-hover); /* 阴影同步加深，增强立体层次 */
+}
+
+/* ---------------------------------------------------------------------
+   三、圆形头像
+   --------------------------------------------------------------------- */
+
+.avatar {
+  margin: 0 0 1.25rem 0;   /* 底部留白，与下方姓名隔开 */
+}
+
+.avatar img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;       /* 图片按容器裁切，不会拉伸变形 */
+  border-radius: 50%;      /* 圆形头像（需求）：50% 圆角即正圆 */
+  border: 3px solid #fff;  /* 白色描边，让头像从卡片上“浮出” */
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.20); /* 与强调色呼应的浅影 */
+}
+
+/* ---------------------------------------------------------------------
+   四、身份信息区（姓名 / 职位 / 简介）
+   --------------------------------------------------------------------- */
+
+.profile {
+  margin: 0;
+}
+
+/* 姓名：主文字色、稍大字号，并微调字距使简约风格更舒展 */
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+}
+
+/* 职位：渐变胶囊徽章（999px 圆角即胶囊） */
+.title {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.82rem;
+  color: #ffffff;
+  border-radius: 999px;                   /* 胶囊状圆角 */
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe); /* 与头像一致的渐变 */
+}
+
+/* 简介：次级文字色，行高放宽便于阅读 */
+.bio {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------------------
+   五、分隔线：区分身份区与联系方式区
+   --------------------------------------------------------------------- */
+
+.divider {
+  width: 48px;            /* 短横线比整行更简约 */
+  height: 2px;
+  margin: 1.4rem auto 1.1rem; /* 上边距大、下边距小，视觉上“沉”向联系方式区 */
+  border-radius: 2px;
+  background: rgba(44, 62, 80, 0.14);
+}
+
+/* ---------------------------------------------------------------------
+   六、联系方式列表
+   --------------------------------------------------------------------- */
+
+.contact {
+  list-style: none;        /* 去掉列表默认圆点 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;  /* 三项纵向排列 */
+  align-items: center;     /* 整体水平居中 */
+  gap: 0.55rem;            /* 项与项之间的间距 */
+}
+
+/* 单项：图标与文字横向排列、垂直居中 */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* 图标：统一 18px，颜色继承 currentColor（该值由 --accent 控制） */
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* 链接：默认次级色，悬停变为强调色并加下划线提示可点击 */
+.contact-item a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-item a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------------
+   七、页脚版权信息
+   --------------------------------------------------------------------- */
+
+.footer {
+  font-size: 0.8rem;
+  color: #9aa5b1;   /* 更浅的灰，不抢卡片视觉焦点 */
+}
+
+/* ---------------------------------------------------------------------
+   八、可访问性辅助
+   --------------------------------------------------------------------- */
+
+/* 键盘 Tab 聚焦时保留清晰的可见焦点 */
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 尊重系统“减少动态效果”设置：关闭上浮动画，照顾前庭敏感用户 */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
